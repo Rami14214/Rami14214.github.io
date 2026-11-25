@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rami Fayad · Video Editor &amp; Motion Designer</title>
+<meta name="description" content="Rami Fayad: video editor and motion designer. Short-form edits, motion graphics, colour and sound. 15+ clients since 2022.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0d0f;--panel:#16161a;--ink:#f2efe9;--mute:#9b978f;--rule:#2a2a30;--hot:#ff4d2e;--soft:#1d1d22}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Archivo,system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--hot);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding:clamp(48px,7vw,110px) max(5vw,16px)}
+/* film grain */
+body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:50;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 1s steps(4) infinite}
+@keyframes grain{25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}}
+nav{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between;align-items:center;padding:12px max(5vw,16px);background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+nav .me{display:flex;align-items:center;gap:10px;font-weight:800;text-decoration:none}
+nav .me img{width:34px;height:34px;border-radius:50%;object-fit:cover}
+nav .rec{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--hot);margin-right:6px;animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.2}}
+nav .links{display:flex;flex-wrap:wrap;gap:0 20px}
+nav .links a{text-decoration:none;color:var(--mute);padding:10px 0}
+nav .links a:hover{color:var(--ink)}
+h1,h2,h3{margin:0;line-height:1;font-weight:900;text-wrap:balance}
+h1{font-size:clamp(48px,9vw,128px);letter-spacing:-.035em;text-transform:uppercase}
+h1 em,h2 em{font-family:"Instrument Serif",serif;font-weight:400;font-style:italic;text-transform:none;letter-spacing:0;color:var(--hot)}
+h2{font-size:clamp(34px,5vw,64px);letter-spacing:-.02em}
+p{margin:0 0 14px;max-width:62ch}
+.lead{font-size:clamp(17px,1.6vw,20px);color:var(--mute);margin:24px 0 30px}
+.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);align-items:center;min-height:calc(100svh - 60px)}
+.hi{display:flex;align-items:center;gap:12px;margin-bottom:24px;color:var(--mute);font-size:15px}
+.hi img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--hot)}
+.hi b{display:block;color:var(--ink);font-size:17px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border:1.5px solid var(--ink);text-decoration:none;font-weight:800;transition:background .2s,color .2s,border-color .2s}
+.btn:hover{background:var(--hot);border-color:var(--hot);color:#fff}
+.btn.pri{background:var(--ink);color:var(--bg)}
+.btn.pri:hover{background:var(--hot);color:#fff}
+/* phone stack in hero */
+.stack{position:relative;height:min(78svh,640px)}
+.phone{position:absolute;width:52%;aspect-ratio:9/16;border-radius:22px;overflow:hidden;border:6px solid #222;background:#000;box-shadow:0 30px 60px rgba(0,0,0,.6)}
+.phone video{width:100%;height:100%;object-fit:cover;display:block}
+.phone.a{left:0;top:8%;transform:rotate(-6deg);z-index:1}
+.phone.b{right:0;top:0;transform:rotate(5deg);z-index:2}
+/* timeline strip */
+.tl{border-block:1px solid var(--rule);background:var(--panel);overflow:hidden;position:relative}
+.tl .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.tl .stat{padding:22px max(2vw,14px);border-left:1px solid var(--rule)}
+.tl .stat:first-child{border-left:0}
+.tl b{display:block;font-size:clamp(30px,3.6vw,44px);line-height:1;font-weight:900}
+.tl span{color:var(--mute);font-size:14px}
+.tracks{padding:10px max(5vw,16px) 14px;border-top:1px solid var(--rule);display:grid;gap:4px;position:relative}
+.track{display:flex;gap:3px;height:16px}
+.track i{display:block;height:100%;border-radius:2px;opacity:.85}
+.playhead{position:absolute;top:6px;bottom:6px;width:2px;background:var(--hot);box-shadow:0 0 12px var(--hot);animation:ph 9s linear infinite}
+@keyframes ph{from{left:5%}to{left:95%}}
+/* work grid */
+.sec-h{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:10px 24px;margin-bottom:36px;padding-bottom:16px;border-bottom:1px solid var(--rule)}
+.sec-h p{margin:0;color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.clip{position:relative;aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#000;cursor:pointer;border:1px solid var(--rule);transition:transform .3s cubic-bezier(.2,.8,.2,1),border-color .3s}
+.clip:hover{transform:translateY(-6px);border-color:var(--hot)}
+.clip video{width:100%;height:100%;object-fit:cover;display:block}
+.clip .cap{position:absolute;left:0;right:0;bottom:0;padding:40px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.85));font-size:14px}
+.clip .cap b{display:block;font-size:15px}
+.clip .cap span{color:#c9c5bd}
+.clip .play{position:absolute;top:12px;right:12px;font-size:12px;font-weight:800;padding:4px 10px;border-radius:20px;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.25)}
+/* services */
+.svc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--rule);background:var(--panel)}
+.svc div{padding:26px 22px;border-left:1px solid var(--rule)}
+.svc div:first-child{border-left:0}
+.svc .n{color:var(--hot);font-weight:800;font-size:14px;display:block;margin-bottom:10px}
+.svc b{display:block;font-size:20px;margin-bottom:8px;line-height:1.15}
+.svc p{color:var(--mute);font-size:15px;margin:0}
+.how{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px)}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;border-top:1px solid var(--rule)}
+.steps li{counter-increment:s;padding:16px 0 16px 52px;border-bottom:1px solid var(--rule);position:relative}
+.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:14px;font-family:"Instrument Serif",serif;font-style:italic;font-size:28px;color:var(--hot);line-height:1}
+.steps b{display:block}
+.steps span{color:var(--mute);font-size:15px}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.tools span{padding:6px 12px;border:1px solid var(--rule);border-radius:30px;font-size:14px;background:var(--soft)}
+.contact{background:var(--hot);color:#fff}
+.contact .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end}
+.contact h2 em{color:#fff}
+.contact p{color:rgba(255,255,255,.85)}
+.contact .mail{font-size:clamp(20px,3vw,34px);font-weight:900;text-decoration:none;border-bottom:3px solid #fff;overflow-wrap:anywhere}
+.contact .btn{border-color:#fff;color:#fff}
+.contact .btn:hover{background:#fff;color:var(--hot)}
+footer{padding:18px max(5vw,16px);color:var(--mute);font-size:13px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+/* lightbox */
+dialog{border:0;padding:0;background:transparent;max-width:min(92vw,420px);width:100%}
+dialog::backdrop{background:rgba(0,0,0,.88)}
+dialog video{width:100%;max-height:86svh;border-radius:16px;display:block;background:#000}
+dialog button{position:absolute;top:-44px;right:0;background:none;border:1px solid #fff;color:#fff;font:700 14px Archivo,sans-serif;padding:6px 14px;cursor:pointer;border-radius:20px}
+@media(max-width:960px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.svc{grid-template-columns:repeat(2,minmax(0,1fr))}.svc div:nth-child(3){border-left:0}.svc div:nth-child(n+3){border-top:1px solid var(--rule)}}
+@media(max-width:860px){.hero,.how,.contact .wrap{grid-template-columns:minmax(0,1fr)}.hero{min-height:0;padding-block:24px}.stack{height:440px;max-width:420px}.tl .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}.tl .stat:nth-child(3){border-left:0}.tl .stat:nth-child(n+3){border-top:1px solid var(--rule)}}
+@media(max-width:540px){.svc{grid-template-columns:minmax(0,1fr)}.svc div{border-left:0!important;border-top:1px solid var(--rule)}.svc div:first-child{border-top:0}.grid{gap:10px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav>
+ <a class="me" href="#top"><img src="../me.jpg" alt="">Rami Fayad</a>
+ <div class="links"><a href="#work"><i class="rec"></i>Work</a><a href="#services">Services</a><a href="#contact">Contact</a><a href="../">Developer site</a></div>
+</nav>
+
+<header class="band" id="top" style="padding-block:0">
+ <div class="wrap hero">
+  <div>
+   <div class="hi"><img src="../me.jpg" alt="Rami Fayad"><span><b>Rami Fayad</b>Available for freelance and part-time remote work</span></div>
+   <h1>Edits that stop the <em>scroll.</em></h1>
+   <p class="lead">Video editor and motion designer since 2022, with 15+ clients. I cut short-form videos, build motion graphics in After Effects, and handle colour and sound, so your content is ready to post.</p>
+   <div class="btns"><a class="btn pri" href="#work">Watch my work ↓</a><a class="btn" href="Rami_Fayad_Video_Editor_CV.pdf" download>Download CV</a></div>
+  </div>
+  <div class="stack" aria-hidden="true">
+   <div class="phone a"><video src="media/reel3.mp4" poster="media/reel3.jpg" autoplay muted loop playsinline preload="metadata"></video></div>
+   <div class="phone b"><video src="media/reel1.mp4" poster="media/reel1.jpg" autoplay muted loop playsinline preload="metadata"></video></div>
+  </div>
+ </div>
+</header>
+
+<div class="tl">
+ <div class="wrap">
+  <div class="stat"><b>15+</b><span>editing clients</span></div>
+  <div class="stat"><b>2022</b><span>editing since</span></div>
+  <div class="stat"><b>7</b><span>pieces of content a week for a nail studio</span></div>
+  <div class="stat"><b>9:16</b><span>Reels, TikTok and Shorts first</span></div>
+ </div>
+ <div class="tracks" aria-hidden="true"><div class="track" id="t1"></div><div class="track" id="t2"></div><div class="track" id="t3"></div><div class="playhead"></div></div>
+</div>
+
+<section class="band" id="work">
+ <div class="wrap">
+  <div class="sec-h rv"><h2>Selected <em>edits</em></h2><p>Hover to preview, tap to watch with sound.</p></div>
+  <div class="grid">
+   <figure class="clip rv" style="margin:0" data-src="media/reel1.mp4"><video src="media/reel1.mp4" poster="media/reel1.jpg" muted loop playsinline preload="none"></video><span class="play">▶ Sound on</span><figcaption class="cap"><b>Kinetic type and icons</b><span>Motion graphics · After Effects</span></figcaption></figure>
+   <figure class="clip rv" style="margin:0;transition-delay:.08s" data-src="media/reel2.mp4"><video src="media/reel2.mp4" poster="media/reel2.jpg" muted loop playsinline preload="none"></video><span class="play">▶ Sound on</span><figcaption class="cap"><b>Text-driven story</b><span>Typography · pacing</span></figcaption></figure>
+   <figure class="clip rv" style="margin:0;transition-delay:.16s" data-src="media/reel3.mp4"><video src="media/reel3.mp4" poster="media/reel3.jpg" muted loop playsinline preload="none"></video><span class="play">▶ Sound on</span><figcaption class="cap"><b>"Editing is mind control"</b><span>Collage animation</span></figcaption></figure>
+   <figure class="clip rv" style="margin:0;transition-delay:.24s" data-src="media/reel4.mp4"><video src="media/reel4.mp4" poster="media/reel4.jpg" muted loop playsinline preload="none"></video><span class="play">▶ Sound on</span><figcaption class="cap"><b>Character motion</b><span>Animation · sound design</span></figcaption></figure>
+  </div>
+ </div>
+</section>
+
+<section class="band" id="services" style="padding-top:0">
+ <div class="wrap">
+  <div class="sec-h rv"><h2>What I <em>do</em></h2><p>From raw footage to a file ready to post.</p></div>
+  <div class="svc rv">
+   <div><span class="n">01</span><b>Short-form editing</b><p>Reels, TikToks and Shorts with strong hooks, tight pacing and captions.</p></div>
+   <div><span class="n">02</span><b>Motion graphics</b><p>Animated titles, kinetic type, icons and transitions in After Effects.</p></div>
+   <div><span class="n">03</span><b>Colour and sound</b><p>Colour correction and grading, sound design, music and mixing.</p></div>
+   <div><span class="n">04</span><b>Social content</b><p>Weekly content plans, filming direction and AI-assisted camera moves and effects.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="band" style="background:var(--panel);border-block:1px solid var(--rule)">
+ <div class="wrap how">
+  <div class="rv">
+   <h2 style="margin-bottom:20px">How I <em>work</em></h2>
+   <p>I edit for the platform first: the first two seconds, the captions, the 9:16 frame. I've run weekly content for a nail studio, planning, filming and editing every week, so I'm used to steady deadlines, not just one-off edits.</p>
+   <p>I'm available every afternoon and evening, Beirut time, which overlaps with US mornings and European afternoons.</p>
+   <div class="tools"><span>Premiere Pro</span><span>After Effects</span><span>Colour grading</span><span>Sound design</span><span>Captions</span><span>AI video tools</span></div>
+  </div>
+  <ol class="steps rv">
+   <li><b>Brief</b><span>You send footage, references and where it will be posted.</span></li>
+   <li><b>First cut</b><span>Story, pacing and hook locked first.</span></li>
+   <li><b>Polish</b><span>Motion graphics, colour, sound and captions.</span></li>
+   <li><b>Revisions and delivery</b><span>Your notes applied, exported in the sizes you need.</span></li>
+  </ol>
+ </div>
+</section>
+
+<section class="band contact" id="contact">
+ <div class="wrap">
+  <div class="rv">
+   <h2 style="margin-bottom:14px">Got footage? <em>Let's cut it.</em></h2>
+   <p>Freelance projects, monthly content retainers or part-time remote roles.</p>
+   <a class="mail" href="mailto:motionbyrami@gmail.com">motionbyrami@gmail.com</a>
+  </div>
+  <div class="btns rv"><a class="btn" href="Rami_Fayad_Video_Editor_CV.pdf" download>Download CV</a></div>
+ </div>
+</section>
+<footer><span>Rami Fayad · Mount Lebanon</span><span>Also a developer: <a href="../">rami14214.github.io</a></span></footer>
+
+<dialog id="lb"><button type="button" id="lbx">Close ✕</button><video id="lbv" controls playsinline></video></dialog>
+
+<script>
+{
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+// timeline tracks
+const pal=['#ff4d2e','#3d3d46','#6b6872','#c9c5bd','#2a6df4','#f2b33d'];
+const mk=(n,s)=>Array.from({length:n},(_,i)=>'<i style="background:'+pal[(i*3+s)%pal.length]+';flex:'+(1+((i*5+s)%6))+'"></i>').join('');
+['t1','t2','t3'].forEach((id,k)=>document.getElementById(id).innerHTML=mk(14-k*3,k));
+// hover preview
+const fine=matchMedia('(pointer:fine)').matches;
+document.querySelectorAll('.clip').forEach(c=>{const v=c.querySelector('video');
+ if(fine&&!reduce){c.addEventListener('mouseenter',()=>{v.preload='auto';v.play().catch(()=>{})});c.addEventListener('mouseleave',()=>{v.pause()})}
+ c.addEventListener('click',()=>{lbv.src=c.dataset.src;lb.showModal();lbv.play().catch(()=>{})});
+});
+const lb=document.getElementById('lb'),lbv=document.getElementById('lbv');
+const close=()=>{lbv.pause();lbv.removeAttribute('src');lbv.load();lb.close()};
+document.getElementById('lbx').addEventListener('click',close);
+lb.addEventListener('click',e=>{if(e.target===lb)close()});
+lb.addEventListener('cancel',()=>{lbv.pause()});
+if(reduce)document.querySelectorAll('.phone video').forEach(v=>{v.pause();v.removeAttribute('autoplay')});
+}
+</script>
+</body>
+</html>
